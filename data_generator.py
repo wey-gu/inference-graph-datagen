@@ -120,168 +120,192 @@ def edge_generator_template(src_prefix, src_count, dst_prefix, dst_count):
 
 def gen_tag_a(i, task_id):
 
-    partition_size = A_COUNT // WORKCER_COUNT
+    partition_size = A_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * (partition_size)
     csv_writer(
         f"data/A_{i}.csv",
-        partition_size,
+        min(partition_size, A_COUNT - init_index),
         tag_generator,
         index=True,
         index_prefix=f"a",
-        init_index=i * (partition_size))
+        init_index=init_index)
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_tag_b(i, task_id):
 
-    partition_size = B_COUNT // WORKCER_COUNT
+    partition_size = B_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * (partition_size)
     csv_writer(
         f"data/B_{i}.csv",
-        partition_size,
+        min(partition_size, B_COUNT - init_index),
         tag_generator,
         index=True,
         index_prefix=f"b",
-        init_index=i * (partition_size))
+        init_index=init_index)
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_tag_c(i, task_id):
 
-    partition_size = C_COUNT // WORKCER_COUNT
+    partition_size = C_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * (partition_size)
     csv_writer(
         f"data/C_{i}.csv",
-        partition_size,
+        min(partition_size, C_COUNT - init_index),
         tag_generator,
         index=True,
         index_prefix=f"c",
-        init_index=i * (partition_size))
+        init_index=init_index)
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_tag_d(i, task_id):
 
-    partition_size = D_COUNT // WORKCER_COUNT
+    partition_size = D_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * (partition_size)
     csv_writer(
         f"data/D_{i}.csv",
-        partition_size,
+        min(partition_size, D_COUNT - init_index),
         tag_generator,
         index=True,
         index_prefix=f"d",
-        init_index=i * (partition_size))
+        init_index=init_index)
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_tag_e(i, task_id):
 
-    partition_size = E_COUNT // WORKCER_COUNT
+    partition_size = E_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * (partition_size)
     csv_writer(
         f"data/E_{i}.csv",
-        partition_size,
+        min(partition_size, E_COUNT - init_index),
         tag_generator,
         index=True,
         index_prefix=f"e",
-        init_index=i * (partition_size))
+        init_index=init_index)
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_tag_f(i, task_id):
 
-    partition_size = F_COUNT // WORKCER_COUNT
+    partition_size = F_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * (partition_size)
     csv_writer(
         f"data/F_{i}.csv",
-        partition_size,
+        min(partition_size, F_COUNT - init_index),
         tag_generator,
         index=True,
         index_prefix=f"f",
-        init_index=i * (partition_size))
+        init_index=init_index)
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_tag_h(i, task_id):
 
-    partition_size = H_COUNT // WORKCER_COUNT
+    partition_size = H_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * (partition_size)
     csv_writer(
         f"data/H_{i}.csv",
-        partition_size,
+        min(partition_size, H_COUNT - init_index),
         tag_generator,
         index=True,
         index_prefix=f"h",
-        init_index=i * (partition_size))
+        init_index=init_index)
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_tag_i(i, task_id):
 
-    partition_size = I_COUNT // WORKCER_COUNT
+    partition_size = I_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * (partition_size)
     csv_writer(
         f"data/I_{i}.csv",
-        partition_size,
+        min(partition_size, I_COUNT - init_index),
         tag_generator,
         index=True,
         index_prefix=f"i",
-        init_index=i * (partition_size))
+        init_index=init_index)
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_edge_e1(i, task_id):
+    partition_size = e1_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * partition_size
     csv_writer(
         f"data/e1_{i}.csv",
-        e1_COUNT // WORKCER_COUNT,
+        min(partition_size, e1_COUNT - init_index),
         edge_generator_template("a", A_COUNT, "b", B_COUNT))
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_edge_e2(i, task_id):
+    partition_size = e2_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * partition_size
     csv_writer(
         f"data/e2_{i}.csv",
-        e2_COUNT // WORKCER_COUNT,
+        min(partition_size, e2_COUNT - init_index),
         edge_generator_template("b", B_COUNT, "c", C_COUNT))
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_edge_e3(i, task_id):
+    partition_size = e3_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * partition_size
     csv_writer(
         f"data/e3_{i}.csv",
-        e3_COUNT // WORKCER_COUNT,
+        min(partition_size, e3_COUNT - init_index),
         edge_generator_template("c", C_COUNT, "d", D_COUNT))
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_edge_e4(i, task_id):
+    partition_size = e4_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * partition_size
     csv_writer(
         f"data/e4_{i}.csv",
-        e4_COUNT // WORKCER_COUNT,
+        min(partition_size, e4_COUNT - init_index),
         edge_generator_template("d", D_COUNT, "e", E_COUNT))
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_edge_e5(i, task_id):
+    partition_size = e5_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * partition_size
     csv_writer(
         f"data/e5_{i}.csv",
-        e5_COUNT // WORKCER_COUNT,
+        min(partition_size, e5_COUNT - init_index),
         edge_generator_template("b", B_COUNT, "f", F_COUNT))
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_edge_e6(i, task_id):
+    partition_size = e6_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * partition_size
     csv_writer(
         f"data/e6_{i}.csv",
-        e6_COUNT // WORKCER_COUNT,
+        min(partition_size, e6_COUNT - init_index),
         edge_generator_template("f", F_COUNT, "d", D_COUNT))
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_edge_e7(i, task_id):
+    partition_size = e7_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * partition_size
     csv_writer(
         f"data/e7_{i}.csv",
-        e7_COUNT // WORKCER_COUNT,
+        min(partition_size, e7_COUNT - init_index),
         edge_generator_template("h", H_COUNT, "c", C_COUNT))
     log(f"task: {task_id} partition: {i} finshed.")
 
 
 def gen_edge_e8(i, task_id):
+    partition_size = e8_COUNT // (PARTITION_COUNT - 1)
+    init_index = i * partition_size
     csv_writer(
         f"data/e8_{i}.csv",
-        e8_COUNT // WORKCER_COUNT,
+        min(partition_size, e8_COUNT - init_index),
         edge_generator_template("c", C_COUNT, "i", I_COUNT))
     log(f"task: {task_id} partition: {i} finshed.")
 
