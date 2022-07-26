@@ -1,0 +1,364 @@
+version: v2
+description: ldbc
+clientSettings:
+  retry: 3
+  concurrency: 30 # number of graph clients
+  channelBufferSize: 128
+  space: hw
+  connection:
+    user: root
+    password: nebula
+    address: 192.168.15.30:9669
+  postStart:
+    commands: |
+      CREATE SPACE IF NOT EXISTS hw(PARTITION_NUM = 24, REPLICA_FACTOR = 3, vid_type = fixed_string(8));
+      USE hw;
+      CREATE TAG IF NOT EXISTS `A`(`name` string);
+      CREATE TAG IF NOT EXISTS `B`(`name` string);
+      CREATE TAG IF NOT EXISTS `C`(`name` string);
+      CREATE TAG IF NOT EXISTS `D`(`name` string);
+      CREATE TAG IF NOT EXISTS `E`(`name` string);
+      CREATE TAG IF NOT EXISTS `F`(`name` string);
+      CREATE TAG IF NOT EXISTS `H`(`name` string);
+      CREATE TAG IF NOT EXISTS `I`(`name` string);
+
+      CREATE EDGE IF NOT EXISTS `e1`();
+      CREATE EDGE IF NOT EXISTS `e2`();
+      CREATE EDGE IF NOT EXISTS `e3`();
+      CREATE EDGE IF NOT EXISTS `e4`();
+      CREATE EDGE IF NOT EXISTS `e5`();
+      CREATE EDGE IF NOT EXISTS `e6`();
+      CREATE EDGE IF NOT EXISTS `e7`();
+      CREATE EDGE IF NOT EXISTS `e8`();
+
+    afterPeriod: 20s
+logPath: ./err/test.log
+files:
+  - path: ./data/A_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+          type: string
+
+        tags:
+          - name: A
+            props:
+              - name: name
+                type: string
+                index: 1
+
+  - path: ./data/B_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+          type: string
+
+        tags:
+          - name: B
+            props:
+              - name: name
+                type: string
+                index: 1
+
+  - path: ./data/C_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+          type: string
+
+        tags:
+          - name: C
+            props:
+              - name: name
+                type: string
+                index: 1
+
+  - path: ./data/D_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+          type: string
+
+        tags:
+          - name: D
+            props:
+              - name: name
+                type: string
+                index: 1
+
+  - path: ./data/E_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+          type: string
+
+        tags:
+          - name: E
+            props:
+              - name: name
+                type: string
+                index: 1
+
+  - path: ./data/F_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+          type: string
+
+        tags:
+          - name: F
+            props:
+              - name: name
+                type: string
+                index: 1
+
+  - path: ./data/H_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+          type: string
+
+        tags:
+          - name: H
+            props:
+              - name: name
+                type: string
+                index: 1
+
+  - path: ./data/I_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 0
+          type: string
+
+        tags:
+          - name: I
+            props:
+              - name: name
+                type: string
+                index: 1
+
+  - path: ./data/e1_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: e1
+        withRanking: false
+        srcVID:
+          index: 0
+          type: string
+
+        dstVID:
+          index: 1
+          type: string
+
+  - path: ./data/e2_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: e2
+        withRanking: false
+        srcVID:
+          index: 0
+          type: string
+
+        dstVID:
+          index: 1
+          type: string
+
+  - path: ./data/e3_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: e3
+        withRanking: false
+        srcVID:
+          index: 0
+          type: string
+
+        dstVID:
+          index: 1
+          type: string
+
+  - path: ./data/e4_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: e4
+        withRanking: false
+        srcVID:
+          index: 0
+          type: string
+
+        dstVID:
+          index: 1
+          type: string
+
+  - path: ./data/e5_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: e5
+        withRanking: false
+        srcVID:
+          index: 0
+          type: string
+
+        dstVID:
+          index: 1
+          type: string
+
+  - path: ./data/e6_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: e6
+        withRanking: false
+        srcVID:
+          index: 0
+          type: string
+
+        dstVID:
+          index: 1
+          type: string
+
+
+  - path: ./data/e7_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: e7
+        withRanking: false
+        srcVID:
+          index: 0
+          type: string
+
+        dstVID:
+          index: 1
+          type: string
+
+  - path: ./data/e8_*.csv
+    batchSize: 100
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: e8
+        withRanking: false
+        srcVID:
+          index: 0
+          type: string
+
+        dstVID:
+          index: 1
+          type: string

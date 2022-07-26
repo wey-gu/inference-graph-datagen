@@ -113,8 +113,8 @@ def edge_generator_template(src_prefix, src_count, dst_prefix, dst_count):
     """
     def edge_generator():
         return (
-            f"{ src_prefix }_{ randint(0, src_count - 1) }",
-            f"{ dst_prefix }_{ randint(0, dst_count - 1) }")
+            f"{ src_prefix }{ randint(0, src_count - 1) }",
+            f"{ dst_prefix }{ randint(0, dst_count - 1) }")
     return edge_generator
 
 
